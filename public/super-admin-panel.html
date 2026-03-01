@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panneau Super Admin - Station Service & Hôtel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .super-admin-panel {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 100px 20px 60px;
+        }
+
+        .panel-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .panel-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #004E89;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .tabs-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            border: none;
+            background: transparent;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .tab-btn:not(.active):hover {
+            background: #f0f0f0;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #004E89;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .section-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #004E89;
+        }
+
+        .btn-primary {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 700;
+            color: #004E89;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .badge {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .badge-approved {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-active {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+
+        .badge-inactive {
+            background: #e2e3e5;
+            color: #383d41;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-approve, .btn-reject, .btn-toggle {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.85rem;
+        }
+
+        .btn-approve {
+            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+            color: white;
+        }
+
+        .btn-reject {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+
+        .btn-toggle {
+            background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+            color: white;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: #999;
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.3;
+        }
+
+        .logout-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-gas-pump"></i></span>
+                <span class="logo-text">Station Service & Hôtel</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Retour au site</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="super-admin-panel">
+        <div class="panel-container">
+            <!-- En-tête -->
+            <div class="panel-header">
+                <div class="panel-title">
+                    <i class="fas fa-user-shield"></i>
+                    Panneau Super Admin
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Déconnexion
+                </button>
+            </div>
+
+            <!-- Statistiques -->
+            <div class="stats-grid" id="statsGrid">
+                <!-- Les stats seront chargées dynamiquement -->
+            </div>
+
+            <!-- Onglets -->
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="approvals">
+                    <i class="fas fa-check-circle"></i>
+                    Approbations en attente
+                </button>
+                <button class="tab-btn" data-tab="admins">
+                    <i class="fas fa-users-cog"></i>
+                    Gestion des Admins
+                </button>
+                <button class="tab-btn" data-tab="menu">
+                    <i class="fas fa-utensils"></i>
+                    Gestion du Menu
+                </button>
+            </div>
+
+            <!-- Contenu Approbations -->
+            <div class="tab-content active" id="approvals-tab">
+                <div class="section-box">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-clock"></i>
+                            Publications en attente
+                        </h2>
+                    </div>
+                    <div id="pendingList"></div>
+                </div>
+            </div>
+
+            <!-- Contenu Admins -->
+            <div class="tab-content" id="admins-tab">
+                <div class="section-box">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-users"></i>
+                            Comptes Administrateurs
+                        </h2>
+                        <button class="btn-primary" id="createAdminBtn">
+                            <i class="fas fa-plus"></i>
+                            Créer un Admin
+                        </button>
+                    </div>
+                    <div id="adminsList"></div>
+                </div>
+            </div>
+
+            <!-- Contenu Menu -->
+            <div class="tab-content" id="menu-tab">
+                <div class="section-box">
+                    <div class="section-header">
+                        <h2 class="section-title">
+                            <i class="fas fa-utensils"></i>
+                            Tous les éléments du menu
+                        </h2>
+                    </div>
+                    <div id="menuList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Création Admin -->
+    <div class="modal" id="createAdminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Créer un compte Admin</h3>
+                <button class="close-btn" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form class="modal-form" id="createAdminForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nom d'utilisateur</label>
+                    <input type="text" id="adminUsername" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="adminEmail" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user-tag"></i> Nom complet</label>
+                    <input type="text" id="adminFullName" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Téléphone (optionnel)</label>
+                    <input type="tel" id="adminPhone">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Mot de passe</label>
+                    <input type="password" id="adminPassword" required minlength="6">
+                </div>
+                <button type="submit" class="save-btn">
+                    <i class="fas fa-save"></i>
+                    Créer le compte
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="super-admin-script.js"></script>
+</body>
+</html>

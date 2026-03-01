@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Administrateur - Station Service & Hôtel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .admin-login-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            max-width: 450px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login-icon {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .login-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #004E89;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #004E89;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group label i { color: #667eea; }
+
+        .form-group input {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-btn:hover:not(:disabled) {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-link a:hover {
+            color: #764ba2;
+            transform: translateX(-5px);
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .message.show {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .message.error {
+            background: #fee;
+            color: #c33;
+            border-left: 4px solid #c33;
+        }
+
+        .message.success {
+            background: #efe;
+            color: #3c3;
+            border-left: 4px solid #3c3;
+        }
+
+        .message.info {
+            background: #eef;
+            color: #33c;
+            border-left: 4px solid #33c;
+        }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+
+        .login-btn.loading .loader { display: inline-block; }
+        .login-btn.loading .btn-text { display: none; }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .login-container { padding: 2rem 1.5rem; }
+            .login-title { font-size: 1.8rem; }
+            .login-icon { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-login-page">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-user-shield login-icon"></i>
+                <h1 class="login-title">Connexion Admin</h1>
+                <p class="login-subtitle">Accès réservé aux administrateurs</p>
+            </div>
+
+            <div class="message" id="messageBox">
+                <i class="fas fa-info-circle"></i>
+                <span id="messageText"></span>
+            </div>
+
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i> Identifiant
+                    </label>
+                    <input type="text" id="username" name="username"
+                        placeholder="Entrez votre identifiant"
+                        required autocomplete="username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Mot de passe
+                    </label>
+                    <input type="password" id="password" name="password"
+                        placeholder="Entrez votre mot de passe"
+                        required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <div class="loader"></div>
+                    <span class="btn-text">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Se connecter
+                    </span>
+                </button>
+            </form>
+
+            <div class="back-link">
+                <a href="index.html">
+                    <i class="fas fa-arrow-left"></i>
+                    Retour au site
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================================
+        // CONFIGURATION — Modifiez uniquement cette ligne si besoin
+        // Assurez-vous que le dossier XAMPP s'appelle station-de-service
+        // Accédez au site via : http://localhost/station-de-service/public/admin-login.html
+        // ============================================================
+        const API_BASE_URL = 'http://localhost/station-de-service/api';
+
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn  = document.getElementById('loginBtn');
+        const messageBox = document.getElementById('messageBox');
+        const messageText = document.getElementById('messageText');
+
+        function showMessage(message, type = 'error') {
+            messageBox.className = `message ${type} show`;
+            messageText.textContent = message;
+            setTimeout(() => messageBox.classList.remove('show'), 5000);
+        }
+
+        function setLoading(loading) {
+            loginBtn.classList.toggle('loading', loading);
+            loginBtn.disabled = loading;
+        }
+
+        function redirectUser(user) {
+            console.log('👤 Utilisateur:', user);
+            let role = String(user.role || user.role_name || '').trim().toLowerCase().replace(/\s+/g, '_');
+            console.log('🔐 Rôle:', role);
+
+            if (role === 'super_admin') {
+                sessionStorage.setItem('redirecting', 'true');
+                window.location.href = 'super-admin-panel.html';
+            } else if (role === 'admin') {
+                sessionStorage.setItem('redirecting', 'true');
+                window.location.href = 'admin-panel.html';
+            } else if (role === 'employee' || role === 'employe') {
+                sessionStorage.setItem('redirecting', 'true');
+                window.location.href = 'index.html';
+            } else {
+                showMessage('Rôle inconnu : ' + role, 'error');
+            }
+        }
+
+        async function checkExistingSession() {
+            const token = sessionStorage.getItem('adminToken');
+            const isRedirecting = sessionStorage.getItem('redirecting');
+
+            if (isRedirecting) {
+                sessionStorage.removeItem('redirecting');
+                return;
+            }
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/auth.php?action=verify`, {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+                if (data.success && data.data && data.data.user) {
+                    redirectUser(data.data.user);
+                } else {
+                    sessionStorage.removeItem('adminToken');
+                }
+            } catch (err) {
+                console.error('Erreur vérification session:', err);
+                sessionStorage.removeItem('adminToken');
+                sessionStorage.removeItem('redirecting');
+            }
+        }
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+
+            if (!username || !password) {
+                showMessage('Veuillez remplir tous les champs', 'error');
+                return;
+            }
+
+            setLoading(true);
+
+            try {
+                const res = await fetch(`${API_BASE_URL}/auth.php?action=login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+
+                const data = await res.json();
+                console.log('Réponse API:', data);
+
+                if (data.success) {
+                    showMessage('Connexion réussie ! Redirection...', 'success');
+                    sessionStorage.setItem('adminToken', data.data.token);
+                    setTimeout(() => redirectUser(data.data.user), 800);
+                } else {
+                    showMessage(data.message || 'Identifiant ou mot de passe incorrect', 'error');
+                    document.getElementById('password').value = '';
+                    document.getElementById('password').focus();
+                }
+            } catch (err) {
+                console.error('Erreur connexion:', err);
+                showMessage(
+                    'Impossible de joindre le serveur. Vérifiez que vous accédez au site via http://localhost/station-de-service/public/admin-login.html et non via Live Server.',
+                    'error'
+                );
+            } finally {
+                setLoading(false);
+            }
+        });
+
+        checkExistingSession();
+    </script>
+</body>
+</html>

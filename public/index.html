@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Station Service & Hôtel</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome pour les icônes professionnelles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-gas-pump"></i></span>
+                <span class="logo-text">Station Service & Hôtel</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="#pompe"><i class="fas fa-gas-pump"></i> Pompe</a></li>
+                <li><a href="#restaurant"><i class="fas fa-utensils"></i> Restaurant</a></li>
+                <li><a href="#cafeteria"><i class="fas fa-coffee"></i> Cafétéria</a></li>
+                <li><a href="#toilettes"><i class="fas fa-restroom"></i> Toilettes</a></li>
+                <li><a href="#hotel"><i class="fas fa-hotel"></i> Hôtel</a></li>
+                <li><a href="admin-login.html"><i class="fas fa-user-shield"></i> Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SLIDER -->
+    <section class="hero-slider" id="accueil">
+        <div class="slider-container">
+            <div class="slide active">
+                <img src="https://en.mercopress.com/data/cache/noticias/98879/0x0/nasta.jpg" alt="Station Service">
+                <div class="slide-content">
+                    <h1 class="slide-title">Bienvenue à votre Station Service</h1>
+                    <p class="slide-subtitle">Carburant de qualité disponible 24h/24</p>
+                    <a href="#pompe" class="cta-btn"><i class="fas fa-arrow-right"></i> Découvrir nos services</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/03/53/restaurant-1867187_1280.jpg" alt="Restaurant">
+                <div class="slide-content">
+                    <h1 class="slide-title">Restaurant & Cafétéria</h1>
+                    <p class="slide-subtitle">Savourez nos plats délicieux</p>
+                    <a href="#restaurant" class="cta-btn"><i class="fas fa-utensils"></i> Voir le menu</a>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="https://th.bing.com/th/id/R.e80baabc558884b4e09c2f3603e6ff7e?rik=jzohuakW5KM%2fBg&pid=ImgRaw&r=0" alt="Hotel">
+                <div class="slide-content">
+                    <h1 class="slide-title">Hôtel Confortable</h1>
+                    <p class="slide-subtitle">Reposez-vous dans nos chambres modernes</p>
+                    <a href="#hotel" class="cta-btn"><i class="fas fa-bed"></i> Réserver maintenant</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Indicateurs -->
+        <div class="slider-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+        </div>
+        
+        <!-- Flèches de navigation -->
+        <button class="slider-arrow prev" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow next" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+    </section>
+
+    <!-- SERVICES GRID - 6 CARTES -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Nos Services Complets</h2>
+            <p class="section-subtitle" data-aos="fade-up">Tout ce dont vous avez besoin en un seul endroit</p>
+            <div class="services-grid">
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-gas-pump service-icon"></i>
+                    </div>
+                    <h3>Pompe à Essence</h3>
+                    <p>Carburant de qualité disponible 24h/24</p>
+                    <a href="#pompe" class="service-btn">En savoir plus <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-utensils service-icon"></i>
+                    </div>
+                    <h3>Restaurant</h3>
+                    <p>Cuisine savoureuse et variée</p>
+                    <a href="#restaurant" class="service-btn">Voir le menu <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-coffee service-icon"></i>
+                    </div>
+                    <h3>Cafétéria</h3>
+                    <p>Café, snacks et boissons</p>
+                    <a href="#cafeteria" class="service-btn">Découvrir <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-restroom service-icon"></i>
+                    </div>
+                    <h3>Toilettes</h3>
+                    <p>Installations propres et modernes</p>
+                    <a href="#toilettes" class="service-btn">Détails <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-hotel service-icon"></i>
+                    </div>
+                    <h3>Hôtel</h3>
+                    <p>Chambres confortables pour voyageurs</p>
+                    <a href="#hotel" class="service-btn">Réserver <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <!-- NOUVELLE CARTE 6 : Boutique/Shop -->
+                <div class="service-card" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="service-icon-wrapper">
+                        <i class="fas fa-shopping-cart service-icon"></i>
+                    </div>
+                    <h3>Boutique</h3>
+                    <p>Produits et accessoires automobiles</p>
+                    <a href="#boutique" class="service-btn">Explorer <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- POMPE À ESSENCE -->
+    <section id="pompe" class="section-alternate">
+        <div class="section-content">
+            <div class="content-wrapper">
+                <div class="content-image" data-aos="fade-right">
+                    <img src="https://d3jvxfsgjxj1vz.cloudfront.net/news/wp-content/uploads/2024/03/27182733/best-petrol-stations-in-the-uae-1.jpg" alt="Pompe à essence">
+                </div>
+                <div class="content-text" data-aos="fade-left">
+                    <h2 class="section-title">Pompe à Essence</h2>
+                    <div class="highlight-badge"><i class="fas fa-clock"></i> Service 24h/24 et 7j/7</div>
+                    <p>Notre station-service moderne vous offre un service de qualité à toute heure. Nous proposons différents types de carburant pour répondre aux besoins de tous les véhicules.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Essence sans plomb</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Diesel de qualité supérieure</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Paiement sécurisé</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Aire de stationnement sécurisée</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-check-circle"></i></span>
+                            <span>Personnel qualifié et accueillant</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESTAURANT -->
+    <section id="restaurant">
+        <div class="section-content">
+            <h2 class="section-title" data-aos="fade-up">Restaurant</h2>
+            <p class="section-subtitle" data-aos="fade-up">Profitez d'une pause gourmande dans notre restaurant</p>
+            
+            <div class="restaurant-hero" data-aos="zoom-in">
+                <img src="https://cdn.pixabay.com/photo/2015/09/14/11/43/restaurant-939435_1280.jpg" alt="Restaurant">
+            </div>
+
+            <h3 class="menu-title" data-aos="fade-up"><i class="fas fa-book-open"></i> Notre Menu</h3>
+            <div class="menu-grid">
+                <div class="menu-category" data-aos="flip-left">
+                    <div class="category-header">
+                        <h4><i class="fas fa-plate-wheat"></i> Plats Principaux</h4>
+                    </div>
+                    <div id="platsMenu">
+                        <!-- Les plats seront chargés dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="menu-category" data-aos="flip-left" data-aos-delay="100">
+                    <div class="category-header">
+                        <h4><i class="fas fa-glass-water"></i> Boissons</h4>
+                    </div>
+                    <div id="boissonsMenu">
+                        <!-- Les boissons seront chargées dynamiquement -->
+                    </div>
+                </div>
+
+                <div class="menu-category" data-aos="flip-left" data-aos-delay="200">
+                    <div class="category-header">
+                        <h4><i class="fas fa-ice-cream"></i> Desserts</h4>
+                    </div>
+                    <div id="dessertsMenu">
+                        <!-- Les desserts seront chargés dynamiquement -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up">
+                <a href="reservation.html?type=restaurant" class="cta-btn large">
+                    <i class="fab fa-whatsapp btn-icon"></i>
+                    Réserver une table
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAFÉTÉRIA -->
+    <section id="cafeteria" class="section-alternate">
+        <div class="section-content">
+            <div class="content-wrapper reverse">
+                <div class="content-text" data-aos="fade-right">
+                    <h2 class="section-title">Cafétéria</h2>
+                    <p>Notre cafétéria vous accueille pour une pause rapide et agréable. Que vous ayez envie d'un café chaud, d'un snack ou d'une boisson fraîche, nous avons ce qu'il vous faut.</p>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-mug-hot"></i></span>
+                            <span>Café expresso, cappuccino, latte</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-birthday-cake"></i></span>
+                            <span>Viennoiseries fraîches du jour</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-burger"></i></span>
+                            <span>Sandwichs et wraps</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-bottle-water"></i></span>
+                            <span>Boissons chaudes et froides</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon"><i class="fas fa-cookie-bite"></i></span>
+                            <span>Pâtisseries et snacks</span>
+                        </div>
+                    </div>
+                    <div class="highlight-badge"><i class="fas fa-clock"></i> Ouvert de 6h00 à 23h00</div>
+                </div>
+                <div class="content-image" data-aos="fade-left">
+                    <img src="https://bulkbar.eu/wp-content/uploads/2022/07/Blog-6-1-scaled.jpg" alt="Cafétéria">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOILETTES -->
+    <section id="toilettes">
+        <div class="section-content">
+            <h2 class="section-title" data-aos="fade-up">Toilettes Publiques</h2>
+            <p class="section-subtitle" data-aos="fade-up">Installations modernes et bien entretenues</p>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-icon-large"><i class="fas fa-restroom"></i></div>
+                    <h3>Séparées H/F</h3>
+                    <p>Toilettes hommes et femmes séparées</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon-large"><i class="fas fa-wheelchair"></i></div>
+                    <h3>Accessibles</h3>
+                    <p>Accès personnes à mobilité réduite</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon-large"><i class="fas fa-spray-can-sparkles"></i></div>
+                    <h3>Propres</h3>
+                    <p>Désinfectées régulièrement</p>
+                </div>
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon-large"><i class="fas fa-clock"></i></div>
+                    <h3>24h/24</h3>
+                    <p>Disponibles à toute heure</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HÔTEL - 8 CARTES -->
+    <section id="hotel" class="section-alternate">
+        <div class="section-content">
+            <h2 class="section-title" data-aos="fade-up">Hôtel</h2>
+            <p class="section-subtitle" data-aos="fade-up">Chambres confortables pour un repos bien mérité</p>
+            
+            <div class="hotel-gallery">
+                <div class="hotel-image-main" data-aos="zoom-in">
+                    <img src="https://cdn.pixabay.com/photo/2016/11/18/17/20/living-room-1835923_1280.jpg" alt="Chambre d'hôtel">
+                </div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card" data-aos="flip-up">
+                    <div class="feature-icon-large"><i class="fas fa-bed"></i></div>
+                    <h3>Chambres variées</h3>
+                    <p>Simples, doubles et familiales</p>
+                </div>
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="100">
+                    <div class="feature-icon-large"><i class="fas fa-tv"></i></div>
+                    <h3>TV satellite</h3>
+                    <p>Écran plat avec chaînes internationales</p>
+                </div>
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="200">
+                    <div class="feature-icon-large"><i class="fas fa-snowflake"></i></div>
+                    <h3>Climatisation</h3>
+                    <p>Chauffage et climatisation</p>
+                </div>
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="300">
+                    <div class="feature-icon-large"><i class="fas fa-shower"></i></div>
+                    <h3>Salle de bain</h3>
+                    <p>Privée avec eau chaude</p>
+                </div>
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="400">
+                    <div class="feature-icon-large"><i class="fas fa-wifi"></i></div>
+                    <h3>Wi-Fi gratuit</h3>
+                    <p>Internet haut débit</p>
+                </div>
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="500">
+                    <div class="feature-icon-large"><i class="fas fa-utensils"></i></div>
+                    <h3>Petit-déjeuner</h3>
+                    <p>Service de restauration</p>
+                </div>
+                <!-- NOUVELLE CARTE 7 : Parking -->
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="600">
+                    <div class="feature-icon-large"><i class="fas fa-car"></i></div>
+                    <h3>Parking sécurisé</h3>
+                    <p>Stationnement gratuit et surveillé</p>
+                </div>
+                <!-- NOUVELLE CARTE 8 : Service en chambre -->
+                <div class="feature-card" data-aos="flip-up" data-aos-delay="700">
+                    <div class="feature-icon-large"><i class="fas fa-bell-concierge"></i></div>
+                    <h3>Service en chambre</h3>
+                    <p>Disponible 24h/24</p>
+                </div>
+            </div>
+            
+            <div class="text-center" data-aos="fade-up">
+                <a href="reservation.html?type=hotel" class="cta-btn large">
+                    <i class="fab fa-whatsapp btn-icon"></i>
+                    Réserver une chambre
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-address-book"></i> Contact</h3>
+                <p><i class="fas fa-phone"></i> Restaurant: <a href="tel:0796254287">0796254287</a></p>
+                <p><i class="fas fa-phone"></i> Hôtel: <a href="tel:0659860108">0659860108</a></p>
+                <p><i class="fas fa-envelope"></i> contact@stationservice.dz</p>
+                <p><i class="fas fa-map-marker-alt"></i> Route Nationale, Algérie</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-clock"></i> Horaires</h3>
+                <p><i class="fas fa-gas-pump"></i> Pompe: 24h/24</p>
+                <p><i class="fas fa-utensils"></i> Restaurant: 7h - 23h</p>
+                <p><i class="fas fa-coffee"></i> Cafétéria: 6h - 23h</p>
+                <p><i class="fas fa-hotel"></i> Hôtel: 24h/24</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Liens rapides</h3>
+                <ul class="footer-links">
+                    <li><a href="#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                    <li><a href="#restaurant"><i class="fas fa-chevron-right"></i> Restaurant</a></li>
+                    <li><a href="#hotel"><i class="fas fa-chevron-right"></i> Hôtel</a></li>
+                    <li><a href="#pompe"><i class="fas fa-chevron-right"></i> Services</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Station Service & Hôtel. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- LIEN VERS LE FICHIER JAVASCRIPT -->
+    <script src="script.js"></script>
+</body>
+</html>

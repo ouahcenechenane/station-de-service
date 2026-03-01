@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservation - Station Service & Hôtel</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Style spécifique pour la page de réservation */
+        .reservation-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 120px 20px 60px;
+        }
+
+        .reservation-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .page-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #000000 0%, #ffa94426 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #004E89;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #004E89;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+        }
+
+        .back-btn:hover {
+            background: #f8f9fa;
+            transform: translateX(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .reservation-container {
+                padding: 2rem 1.5rem;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .page-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-gas-pump"></i></span>
+                <span class="logo-text">Station Service & Hôtel</span>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#accueil"><i class="fas fa-home"></i> Accueil</a></li>
+                <li><a href="index.html#pompe"><i class="fas fa-gas-pump"></i> Pompe</a></li>
+                <li><a href="index.html#restaurant"><i class="fas fa-utensils"></i> Restaurant</a></li>
+                <li><a href="index.html#cafeteria"><i class="fas fa-coffee"></i> Cafétéria</a></li>
+                <li><a href="index.html#toilettes"><i class="fas fa-restroom"></i> Toilettes</a></li>
+                <li><a href="index.html#hotel"><i class="fas fa-hotel"></i> Hôtel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- PAGE DE RÉSERVATION -->
+    <div class="reservation-page">
+        <div class="reservation-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Retour à l'accueil
+            </a>
+
+            <div class="page-header">
+                <i class="fas fa-calendar-check page-icon" id="pageIcon"></i>
+                <h1 class="page-title" id="pageTitle">Réservation</h1>
+                <p class="page-subtitle">Remplissez le formulaire ci-dessous</p>
+            </div>
+
+            <form class="reservation-form" id="reservationForm">
+                <div class="form-group">
+                    <label for="fullName">
+                        <i class="fas fa-user"></i> Nom & Prénom
+                    </label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        name="fullName" 
+                        placeholder="Ex: Ahmed Benali"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">
+                        <i class="fas fa-phone"></i> Numéro de téléphone
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        placeholder="Ex: 0555123456"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="personCount">
+                        <i class="fas fa-users"></i> Nombre de personnes
+                    </label>
+                    <input 
+                        type="number" 
+                        id="personCount" 
+                        name="personCount" 
+                        placeholder="Ex: 4"
+                        min="1"
+                        max="50"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="reservationDetails">
+                        <i class="fas fa-comment-alt"></i> Détails de la réservation
+                    </label>
+                    <textarea 
+                        id="reservationDetails" 
+                        name="reservationDetails" 
+                        rows="4"
+                        placeholder="Ex: Réservation pour ce soir à 20h, table près de la fenêtre si possible..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i>
+                    Envoyer la réservation
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3><i class="fas fa-address-book"></i> Contact</h3>
+                <p><i class="fas fa-phone"></i> Restaurant: <a href="tel:0796254287">0796254287</a></p>
+                <p><i class="fas fa-phone"></i> Hôtel: <a href="tel:0659860108">0659860108</a></p>
+                <p><i class="fas fa-envelope"></i> contact@stationservice.dz</p>
+                <p><i class="fas fa-map-marker-alt"></i> Route Nationale, Algérie</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-clock"></i> Horaires</h3>
+                <p><i class="fas fa-gas-pump"></i> Pompe: 24h/24</p>
+                <p><i class="fas fa-utensils"></i> Restaurant: 7h - 23h</p>
+                <p><i class="fas fa-coffee"></i> Cafétéria: 6h - 23h</p>
+                <p><i class="fas fa-hotel"></i> Hôtel: 24h/24</p>
+            </div>
+            <div class="footer-section">
+                <h3><i class="fas fa-link"></i> Liens rapides</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html#accueil"><i class="fas fa-chevron-right"></i> Accueil</a></li>
+                    <li><a href="index.html#restaurant"><i class="fas fa-chevron-right"></i> Restaurant</a></li>
+                    <li><a href="index.html#hotel"><i class="fas fa-chevron-right"></i> Hôtel</a></li>
+                    <li><a href="index.html#pompe"><i class="fas fa-chevron-right"></i> Services</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Station Service & Hôtel. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Déterminer le type de réservation selon l'URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type');
+
+        const pageTitle = document.getElementById('pageTitle');
+        const pageIcon = document.getElementById('pageIcon');
+
+        if (type === 'restaurant') {
+            pageTitle.innerHTML = '<i class="fas fa-utensils"></i> Réservation Restaurant';
+            pageIcon.className = 'fas fa-utensils page-icon';
+        } else if (type === 'hotel') {
+            pageTitle.innerHTML = '<i class="fas fa-hotel"></i> Réservation Hôtel';
+            pageIcon.className = 'fas fa-hotel page-icon';
+        }
+
+        // Gestion du formulaire
+        const reservationForm = document.getElementById('reservationForm');
+        
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Récupérer les données
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const personCount = document.getElementById('personCount').value;
+            const details = document.getElementById('reservationDetails').value;
+            
+            // Construire le message
+            let message = '';
+            
+            if (type === 'restaurant') {
+                message = `🍽️ *RÉSERVATION RESTAURANT*\n\n`;
+            } else {
+                message = `🏨 *RÉSERVATION HÔTEL*\n\n`;
+            }
+            
+            message += `👤 *Nom & Prénom:* ${fullName}\n`;
+            message += `📱 *Téléphone:* ${phone}\n`;
+            message += `👥 *Nombre de personnes:* ${personCount}\n\n`;
+            message += `📝 *Détails:*\n${details}`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappNumber = '213659860108';
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+            
+            // Animation du bouton
+            const submitBtn = reservationForm.querySelector('.submit-btn');
+            submitBtn.classList.add('loading');
+            
+            setTimeout(() => {
+                window.open(whatsappURL, '_blank');
+                submitBtn.classList.remove('loading');
+                
+                // Message de succès
+                showSuccessMessage();
+                
+                // Réinitialiser le formulaire
+                reservationForm.reset();
+            }, 300);
+        });
+
+        // Message de succès
+        function showSuccessMessage() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.innerHTML = `
+                <i class="fas fa-check-circle"></i>
+                <p>Réservation envoyée avec succès !</p>
+            `;
+            
+            successDiv.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: linear-gradient(135deg, #06D6A0 0%, #05a57a 100%);
+                color: white;
+                padding: 1.5rem 2rem;
+                border-radius: 15px;
+                box-shadow: 0 10px 30px rgba(6, 214, 160, 0.3);
+                z-index: 10001;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                font-weight: 600;
+                animation: slideInRight 0.5s ease;
+            `;
+            
+            document.body.appendChild(successDiv);
+            
+            setTimeout(() => {
+                successDiv.style.animation = 'slideOutRight 0.5s ease';
+                setTimeout(() => successDiv.remove(), 500);
+            }, 3000);
+        }
+
+        // Menu mobile
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            const spans = menuToggle.querySelectorAll('span');
+            if (navLinks.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
